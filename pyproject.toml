@@ -1,0 +1,15 @@
+[project]
+name = "jikgu-customs-mcp"
+version = "0.1.0"
+description = "Jikgu Customs Assistant (직구 관세 비서) — Korean import-duty estimation MCP server"
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp>=3.0,<4.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
