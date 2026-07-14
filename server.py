@@ -7,7 +7,9 @@ non-destructive, closed-world, and idempotent.
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Annotated, Literal
+
+from pydantic import Field
 
 from mcp.types import ToolAnnotations
 
@@ -118,7 +120,11 @@ def _duty_markdown(e: calculator.DutyEstimate) -> str:
 def calculate_import_duty(
     goods_price_usd: float,
     intl_shipping_usd: float,
-    country: str,
+    country: Annotated[str, Field(description=(
+        "Origin country the package ships FROM (the seller's country), "
+        "e.g. 'US', 'CN', 'JP', 'DE'. NOT the buyer's country — the "
+        "destination is always Korea. '미국에서 샀다' → 'US'."
+    ))],
     category: Category,
     exchange_rate_krw_per_usd: float | None = None,
     shipping_method: ShippingMethod = "express",
