@@ -5,7 +5,6 @@ so responses stay well under the 100ms target. All tools are read-only,
 non-destructive, closed-world, and idempotent.
 """
 
-from __future__ import annotations
 
 from typing import Annotated, Literal
 
@@ -114,7 +113,9 @@ def _duty_markdown(e: calculator.DutyEstimate) -> str:
         "Judges list-clearance vs formal-import and duty-free eligibility (150 USD "
         "default, 200 USD for US express shipments), then estimates tax using the "
         "personal-use simplified rate (간이세율, duty+VAT combined). Returns a compact "
-        "markdown table. Pure calculation, no external lookup. Amounts are estimates."
+        "markdown table. Pure calculation, no external lookup. Amounts are estimates. "
+        "IMPORTANT: 'country' is the ORIGIN the package ships from (seller's country, "
+        "e.g. '미국에서 구매' → 'US'), never 'Korea' (Korea is the destination)."
     ),
 )
 def calculate_import_duty(
